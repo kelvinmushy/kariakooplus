@@ -1,6 +1,8 @@
 @extends('layouts.frontend.app')
 
-@section('title', $ad->name)
+@section('title', $ad->name . ' - KariakooStore')
+@section('meta_description', 'Buy ' . $ad->name . ' for ' . number_format($ad->price, 0) . ' Tsh at KariakooStore.')
+@section('meta_keywords', 'kariakoomall, mykariakoo, ' . $ad->subcategory->name . ', ' . $ad->brand->name . ', ' . $ad->name . ', buy electronics, ' . $ad->subcategory->name . ' accessories')
 
 @section('top')
     <style>

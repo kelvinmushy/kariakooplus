@@ -1,6 +1,9 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'Create Electronic Device Ad')
+@section('title', 'KariakooStore - Buy Electronics, Accessories, Radios & More')
+@section('meta_description', 'Shop quality electronics, computers, accessories, radios, and bags at KariakooStore. Discover top deals online.')
+@section('meta_keywords', 'kariakoomall, mykariakoo, electronics, computers, accessories, radios, bags, online shopping, tanzania store')
+
 @section('top')
     <style>
         .card:hover {
@@ -8,19 +11,13 @@
             transition: transform 0.3s ease-in-out;
         }
     </style>
-
 @endsection
+
 @section('content')
-
     <div class="container">
-
         <livewire:product-filter />
-
         @livewireStyles
-
-
     </div>
-
 @endsection
 
 @section('bot')
