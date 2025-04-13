@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', $meta_title ?? 'KariakooStore')</title>
     <meta name="description" content="@yield('meta_description', $meta_description ?? 'Shop quality products at KariakooStore - the best online marketplace in Tanzania.')">
-    <meta name="keywords" content="@yield('meta_keywords', $meta_keywords ?? 'kariakoo, tanzania shopping, electronics, computers, buy online, laptops')">
+    <meta name="keywords" content="@yield('meta_keywords', $meta_keywords ?? 'kariakoo, tanzania shopping, electronics, computers, buy online, laptops,odayshoptanzania,jiji tanzania,kupatana')">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -30,6 +30,7 @@
         @include('layouts.frontend.nav')
         @include('layouts.frontend.hero_section')
         @yield('content')
+        @include('layouts.partials.footer')
     </div>
 
     @livewireScripts
@@ -38,6 +39,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 
     @yield('bot')
+
 </body>
 
 </html>

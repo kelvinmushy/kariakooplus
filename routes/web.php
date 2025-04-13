@@ -7,6 +7,7 @@ Route::get('/', function () {
     return view('home.index');
 });
 
+Route::view('/about', 'pages.about')->name('about');
 
 
 
