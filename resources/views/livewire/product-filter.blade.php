@@ -60,12 +60,12 @@
                                 </div>
 
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title text-truncate">{{ $ad->name }}</h5>
+                                    <h5 class="card-title text-truncate">{{ ucwords(strtolower($ad->name)) }}</h5>
                                     
                                     <p class="card-text text-muted" style="font-size: 14px; height: 60px; overflow: hidden;">
-                                        {{ strip_tags($ad->product_description) }}
+                                        {{ ucwords(strtolower(strip_tags($ad->product_description))) }}
                                     </p>
-
+                                
                                     <div class="mt-auto">
                                         <div class="d-flex justify-content-between align-items-center mt-1">
                                             <span class="text-muted text-decoration-line-through" style="font-size: 12px;">
@@ -77,6 +77,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </a>
                     </div>

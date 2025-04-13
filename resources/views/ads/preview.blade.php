@@ -25,12 +25,13 @@
 
         /* Typography */
         .ad-title {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
+            color: #333;
         }
 
         .ad-price {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #007bff;
         }
 
@@ -50,125 +51,162 @@
         .btn-whatsapp {
             font-size: 1.05rem;
         }
+
+        /* Badge Styling */
+        .badge {
+            font-size: 0.85rem;
+        }
+
+        /* Container Shadow */
+        .product-detail-container {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Card Styling for Related Ads */
+        .related-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .related-card img {
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .related-card-body {
+            padding: 1rem;
+        }
     </style>
 @endsection
 
 @section('content')
-    <div class="container py-4">
-        <!-- Image Gallery -->
-        <div class="row justify-content-start mb-4">
-            <div class="col-lg-8">
-                @if($ad->adimages && count($ad->adimages))
-                    <div id="adCarousel" class="carousel slide border rounded shadow-sm" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            @foreach($ad->adimages as $key => $image)
-                                <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                                    <img src="{{ asset($image->image_path) }}" class="d-block w-100 p-2 rounded" alt="Product Image">
-                                </div>
-                            @endforeach
-                        </div>
-                        @if(count($ad->adimages) > 1)
-                            <button class="carousel-control-prev" type="button" data-bs-target="#adCarousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#adCarousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            </button>
-                        @endif
+<div class="container py-4">
+    <!-- Image Gallery -->
+    <div class="row justify-content-start mb-4">
+        <div class="col-lg-8">
+            @if($ad->adimages && count($ad->adimages))
+                <div id="adCarousel" class="carousel slide border rounded shadow-sm" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        @foreach($ad->adimages as $key => $image)
+                            <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                <img src="{{ asset($image->image_path) }}" class="d-block w-100 p-2 rounded" alt="Product Image">
+                            </div>
+                        @endforeach
                     </div>
+                    @if(count($ad->adimages) > 1)
+                        <button class="carousel-control-prev" type="button" data-bs-target="#adCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#adCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </button>
+                    @endif
+                </div>
 
-                    <!-- Thumbnails -->
-                    <div class="thumbnail-container mt-3">
-                        <div class="d-flex flex-wrap gap-2 justify-content-start">
-                            @foreach($ad->adimages as $key => $image)
-                                <img src="{{ asset($image->image_path) }}"
-                                    class="thumbnail img-thumbnail p-1 {{ $key === 0 ? 'border-primary' : '' }}"
-                                    data-bs-target="#adCarousel" data-bs-slide-to="{{ $key }}"
-                                    style="width: 80px; height: 80px; object-fit: cover; cursor: pointer;" alt="Thumbnail {{ $key + 1 }}" loading="lazy">
-                            @endforeach
-                        </div>
+                <!-- Thumbnails -->
+                <div class="thumbnail-container mt-3">
+                    <div class="d-flex flex-wrap gap-2 justify-content-start">
+                        @foreach($ad->adimages as $key => $image)
+                            <img src="{{ asset($image->image_path) }} "
+                                class="thumbnail img-thumbnail p-1 {{ $key === 0 ? 'border-primary' : '' }} "
+                                data-bs-target="#adCarousel" data-bs-slide-to="{{ $key }}"
+                                style="width: 80px; height: 80px; object-fit: cover; cursor: pointer;" alt="Thumbnail {{ $key + 1 }}"
+                                loading="lazy">
+                        @endforeach
                     </div>
-                @else
-                    <img src="{{ asset('no-image.png') }}" class="img-fluid rounded shadow" alt="No image">
-                @endif
-            </div>
+                </div>
+            @else
+                <img src="{{ asset('no-image.png') }}" class="img-fluid rounded shadow" alt="No image">
+            @endif
         </div>
+    </div>
 
-        <!-- Ad Details -->
-        <div class="row justify-content-start">
-            <div class="col-lg-8">
-                <div class="border rounded p-4 shadow-sm bg-white">
-                    <h2 class="fw-bold mb-2">{{ $ad->name }}</h2>
+    <!-- Ad Details -->
+    <div class="row justify-content-start">
+        <div class="col-lg-8">
+            <div class="product-detail-container p-4">
+                <h2 class="fw-bold mb-2">{{ ucwords(strtolower($ad->name)) }}</h2>
 
-                    <span class="badge bg-secondary mb-3">
-                        <i class="bi bi-tag-fill me-1"></i> {{ $ad->subcategory->name }}
-                    </span>
+                <span class="badge bg-secondary mb-3">
+                    <i class="bi bi-tag-fill me-1"></i> {{ ucwords(strtolower($ad->subcategory->name)) }}
+                </span>
 
-                    <h4 class="text-success fw-bold mb-3">
-                        <i class="bi bi-cash-stack me-2"></i> Tsh {{ number_format($ad->price, 0) }}
-                    </h4>
+                <h4 class="text-success fw-bold mb-3 ad-price">
+                    <i class="bi bi-cash-stack me-2"></i> Tsh {{ number_format($ad->price, 0) }}
+                </h4>
 
-                    <p class="text-muted mb-1">
-                        <i class="bi bi-info-circle me-2"></i><strong>Condition:</strong> {{ ucfirst($ad->product_condition) }}
-                    </p>
+                <p class="text-muted mb-1">
+                    <i class="bi bi-info-circle me-2"></i><strong>Condition:</strong> {{ ucfirst(strtolower($ad->product_condition)) }}
+                </p>
 
-                    <p class="mb-1">
-                        <i class="bi bi-award me-2"></i><strong>Brand:</strong> {{ $ad->brand->name }}
-                    </p>
+                <p class="mb-1">
+                    <i class="bi bi-award me-2"></i><strong>Brand:</strong> {{ ucwords(strtolower($ad->brand->name)) }}
+                </p>
 
-                    <hr>
+                <hr>
 
-                    <!-- Description -->
-                    <h5 class="fw-bold section-gap">
-                        <i class="bi bi-card-text me-2"></i>Product Description
-                    </h5>
-                    <div class="p-3 rounded bg-light border" style="font-size: 1rem; line-height: 1.6;">
-                        {!! $ad->product_description !!}
-                    </div>
+                <!-- Description -->
+                <h5 class="fw-bold section-gap section-title">
+                    <i class="bi bi-card-text me-2"></i>{{ ucwords(strtolower('Product Description')) }}
+                </h5>
+                <div class="p-3 rounded bg-light border" style="font-size: 1rem; line-height: 1.6;">
+                    {!!( ucwords(strtolower($ad->product_description))) !!}
+                   
+                </div>
 
-                    <!-- WhatsApp Contact -->
-                    <div class="mt-4">
-                        @php
-                            $whatsappMessage = "Hi, I'm interested in the product: " . $ad->name . "\n";
-                            $whatsappMessage .= "Price: Tsh " . number_format($ad->price, 0) . "\n";
-                            $whatsappMessage .= "Product Link: " . url()->current();
-                            $whatsappMessage = urlencode($whatsappMessage);
-                        @endphp
+                <!-- WhatsApp Contact -->
+                <div class="mt-4">
+                    @php
+                        $whatsappMessage = "Hi, I'm interested in the product: " . $ad->name . "\n";
+                        $whatsappMessage .= "Price: Tsh " . number_format($ad->price, 0) . "\n";
+                        $whatsappMessage .= "Product Link: " . url()->current();
+                        $whatsappMessage = urlencode($whatsappMessage);
+                    @endphp
 
-                        <a href="https://wa.me/+255744091391?text={{ $whatsappMessage }}"
-                            class="btn btn-success btn-lg w-100 shadow-sm d-flex align-items-center justify-content-center gap-2 btn-whatsapp"
-                            target="_blank">
-                            <i class="bi bi-whatsapp fs-4"></i> Chat via WhatsApp
-                        </a>
-                    </div>
+                    <a href="https://wa.me/+255744091391?text={{ $whatsappMessage }}"
+                        class="btn btn-success btn-lg w-100 shadow-sm d-flex align-items-center justify-content-center gap-2 btn-whatsapp"
+                        target="_blank">
+                        <i class="bi bi-whatsapp fs-4"></i> {{ ucwords(strtolower('Chat via WhatsApp')) }}
+                    </a>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Related Ads -->
-        @if($relatedAds->count())
-            <div class="container pb-5 section-gap">
-                <h4 class="fw-bold mb-3">Related Ads</h4>
-                <div class="row">
-                    @foreach($relatedAds as $related)
-                        <div class="col-md-3 mb-4">
-                            <div class="card h-100 shadow-sm border-0">
-                                <a href="{{ route('ads.preview', @$related->slug) }}">
-                                    <img src="{{ $related->adimages->first()->image_path ?? asset('no-image.png') }}"
-                                        class="card-img-top rounded-top"
-                                        alt="{{ $related->name }}"
-                                        style="height: 180px; object-fit: cover;">
-                                </a>
-                                <div class="card-body">
-                                    <h6 class="ad-title mb-1">{{ Str::limit($related->name, 40) }}</h6>
-                                    <p class="text-success ad-price mb-1">Tsh {{ number_format($related->price, 0) }}</p>
-                                    <span class="badge bg-secondary">{{ $related->subcategory->name }}</span>
-                                </div>
+    <!-- Related Ads -->
+    @if($relatedAds->count())
+        <div class="container pb-5 section-gap">
+            <h4 class="section-title">{{ ucwords(strtolower('Related Ads')) }}</h4>
+            <div class="row">
+                @foreach($relatedAds as $related)
+                    <div class="col-md-3 mb-4">
+                        <div class="card related-card h-100">
+                            <a href="{{ route('ads.preview', @$related->slug) }}">
+                                <img src="{{ $related->adimages->first()->image_path ?? asset('no-image.png') }}"
+                                    class="card-img-top rounded-top"
+                                    alt="{{ ucwords(strtolower($related->name)) }}"
+                                    style="height: 180px; object-fit: cover;">
+                            </a>
+                            <div class="card-body related-card-body">
+                                <h6 class="ad-title mb-1">{{ Str::limit(ucwords(strtolower($related->name)), 40) }}</h6>
+                                <p class="text-success ad-price mb-1">Tsh {{ number_format($related->price, 0) }}</p>
+                                <span class="badge bg-secondary">{{ ucwords(strtolower($related->subcategory->name)) }}</span>
                             </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
-        @endif
-    </div>
+        </div>
+    @endif
+</div>
+
 @endsection
