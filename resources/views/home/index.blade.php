@@ -2,19 +2,24 @@
 
 @section('title', 'Create Electronic Device Ad')
 @section('top')
-
+    <style>
+        .card:hover {
+            transform: scale(1.02);
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
 
 @endsection
 @section('content')
 
-<div class="container">
+    <div class="container">
 
-    <livewire:product-filter />
+        <livewire:product-filter />
 
-    @livewireStyles
+        @livewireStyles
 
 
-</div>
+    </div>
 
 @endsection
 

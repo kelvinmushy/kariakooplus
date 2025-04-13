@@ -1,5 +1,4 @@
-<aside class="bg-white p-4 rounded shadow-sm border"
-       style="position: sticky; top: 80px; z-index: 1010;">
+<aside class="bg-white p-4 rounded shadow-sm border" style="position: sticky; top: 80px; z-index: 1010;">
     <h5 class="mb-4 text-center">Filter Products</h5>
 
     <!-- Category Filter -->
@@ -32,11 +31,13 @@
             <label class="form-check-label" for="conditionNew">New</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" wire:model.lazy="conditions" value="used" id="conditionUsed">
+            <input class="form-check-input" type="checkbox" wire:model.lazy="conditions" value="used"
+                id="conditionUsed">
             <label class="form-check-label" for="conditionUsed">Used</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" wire:model.lazy="conditions" value="refurbished" id="conditionRefurbished">
+            <input class="form-check-input" type="checkbox" wire:model.lazy="conditions" value="refurbished"
+                id="conditionRefurbished">
             <label class="form-check-label" for="conditionRefurbished">Refurbished</label>
         </div>
     </div>
@@ -45,7 +46,8 @@
     <div class="mb-3">
         <label for="minPrice" class="form-label">Price Range</label>
         <div class="d-flex">
-            <input type="number" id="minPrice" wire:model.lazy="minPrice" class="form-control me-2" placeholder="Min Price">
+            <input type="number" id="minPrice" wire:model.lazy="minPrice" class="form-control me-2"
+                placeholder="Min Price">
             <input type="number" id="maxPrice" wire:model.lazy="maxPrice" class="form-control" placeholder="Max Price">
         </div>
     </div>
