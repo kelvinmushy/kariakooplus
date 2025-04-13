@@ -25,7 +25,7 @@
                 <p><i class="bi bi-house-door-fill me-2"></i> Dar es Salaam, Tanzania</p>
                 <p><i class="bi bi-envelope-fill me-2"></i> support@kariakoostore.co.tz</p>
                 <p><i class="bi bi-phone-fill me-2"></i> +255 744 091 391</p>
-                <p><i class="bi bi-whatsapp me-2"></i> +255 255 744 091 391</p>
+                <p><i class="bi bi-whatsapp me-2"></i> +255 744 091 391</p>
             </div>
 
             <!-- Social -->
